@@ -1,0 +1,112 @@
+title: Start
+color: red
+---
+<<declare $likeness = 50>>
+<<declare $liked = 0 >>
+<<if $liked == 1>>
+<<likeness 50>>
+<<else>>
+<<background "FirstScene">>
+
+Sitting in a class, the teacher is mindlessly talking about gravity and its effects but you can't be bothered to really pay attention.
+You're more focused on the girl infront of you. 
+
+<<background "ThirdScene">>
+
+She's got a tube of paper, pressing it to her mouth and staring at the teacher...
+She's definetly going to get a spit ball on the teacher...
+
+<<background "Fith">>
+
+That'd honestly be really funny...
+
+<<background "SecondScene">>
+
+If it weren't the fact you needed to make sure your notes were correct for the quiz tommorrow...
+Did you really need to stop her? It'd give the class a break...
+
+<<background "Sixth">>
+
+But you're the class president, you can't have this harm your fellow students eductation...
+What should you do?
+
+-> Stop her!
+    <<likeness -40>>
+    <<set $likeness = 10>>
+    <<jump Stop_Her>>
+-> Wait and see what happens.
+    <<likeness 50>>
+    <<set $likeness = 100>>
+    <<jump Wait>>
+
+   
+===
+
+title: Stop_Her
+color: blue
+---
+<<background "Fouth">>
+
+Damn it... letting her do this would only cause more trouble. 
+
+<<background "stim 10">>
+
+You stand up and walk infront of the girl, making the class focus their eyes on you.
+You: "Please hand that over..."
+Girl: "What?"
+You: "You know what I'm talking about."
+The teacher had paused her lesson, everyone focused on the two of you. 
+Girl: "Tch...Fine."
+The girl handed it over, slapping the tube into your palm and rolling her eyes.
+Girl: "So lame"
+You drop the tube and spitballs into the trash and sit back down.
+Teacher: "Thank you for catching that, now back to..."
+
+<<jump End>>
+===
+
+title: Wait
+color: green 
+---
+<<background "Stim 9">>
+
+You wait and watch as the spit ball leaves the tube and lands square on the teachers head.
+more fly out and hit her square on, sending the class into a fit of laughter.
+She screams at the girl and points her out of the classroom, yelling to go to the principal.
+The girl shrugs and leaves without a second thought. 
+<<jump End>>
+===
+
+
+title: End
+color: yellow
+---
+After class you walk by the principals office, the windows are open and you catch a glimpse inside.
+
+<<if $likeness > 60>>
+
+<<background "stim7">>
+
+The principal is sternly reprimanding the girl, hands on his hips and a finger at her but she's not focused at that at all.
+She glances at you, smiling and giving you a small wave, you wave back as you past by. 
+the end.
+
+<<elseif $likeness <= 40>>
+
+<<background "Stim8">>
+
+The principal is yelling at that girl from earlier. She isn't looking at him though, instead her eyes are locked on you.
+She's glaring right at you...
+ugh... better to hope you never have an interaction with her again...
+
+<<else>>
+
+The principal is yelling at that girl from earlier. She doesn't even notice you.
+
+<<endif>>
+
+Play again?
+-> Restart
+<< Set $liked = 1 >>
+<<jump Start>>
+===

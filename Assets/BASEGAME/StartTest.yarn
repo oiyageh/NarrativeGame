@@ -1,0 +1,126 @@
+﻿title: StartTest
+color: red
+position: 338,91
+---
+<<declare $playerName = "Bob">>
+<<declare $knowsName = false>>
+<<declare $playerCash = 0>>
+
+Sammy: whats your name?
+-> why do you care?
+-> John
+    <<set $playerName = "John">>
+    <<set $knowsName = true>>
+-> Jane
+    <<set $playerName = "Jane">>
+    <<set $knowsName = true>>
+    <<set $playerCash = 100>>
+
+Sammy: hello, {$playerName}!
+
+<<if !$knowsName>>
+wait, how'd you know my name?
+<<endif>>
+
+<<if $playerCash > 50>>
+Sammy: hmmm, I see you have some cash on you...
+-> here's some
+    <<set $playerCash = $playerCash - 10>>
+-> ...
+<<else>>
+Sammy: hmm, we are the same...
+<<endif>>
+
+-> hello?
+    Sammy: yeah, hello!
+-> why are you talking to me?
+    <<detour Question_Talking>>
+-> ...
+
+<<jump Goodbye>>
+===
+
+title: Question_Talking
+color: red
+position: 701,312
+---
+Sammy: idunno, you came here...
+Sammy: why are you here?
+-> i pressed play on this unity project
+-> i never asked to be here
+    Sammy: you can just leave, you know
+===
+
+title: Goodbye
+position: 336,533
+---
+Sammy: goodbye
+-> goodbye
+    <<jump Goodbye_Response>>
+-> wait a second...
+    <<jump Wait_Response>>
+-> do you still want some money? <<if $playerCash > 50>>
+    <<set $playerCash = $playerCash - 10>>
+    Sammy: oh! thank you
+===
+
+title: Goodbye_Response
+color: red
+position: 337,835
+---
+Sammy: ok, goodbye
+-> are you really just gonna leave?
+-> where are you going next?
+===
+
+title: Wait_Response
+position: -40,492
+group: wait
+---
+Sammy: what do you want?
+-> i just want to play a game
+    <<jump Game>>
+-> nevermind, Goodbye
+    <<jump Goodbye>>>>
+===
+
+title: Game
+position: -40,718
+---
+Sammy: cool, i have a game for you
+<<jump Start_dice>>
+===
+
+title: Start2
+---
+hello
+<<if visited("Start")>>
+    again...
+<<else>>
+    for the first time
+<<endif>>
+<<jump Start>>
+===
+
+title: Start_dice
+---
+Sammy: lets roll a dice
+Sammy: if you roll a 6, you get 5 bucks!
+Sammy: If you don't I get 1$
+<<if dice(6) == 6>>
+    you rolled a six!
+<<else>>
+    not very good, huh
+<<endif>>
+
+hello, lets start over again...
+<<change_light Orb1 LightRed>>
+let's take a deep breath...
+<<change_light Orb2 LightRed>>
+ok, we did it.
+<<change_light Orb1 LightGreen>>
+orb1: watch me grow!
+<<grow Orb1 1.5 1>>
+orb2: pff, thats nothing, watch ME grow!
+<<grow Orb2 10 1>>
+===
